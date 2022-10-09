@@ -24,15 +24,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.15.0'
+          cache: npm
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-        
-      - name: npm install, build, and test example
-        run: |
-          npm install
+      - name: Install dependencies
+        run: npm install octokit
 
       # Runs a set of commands using the runners shell
-      - name: test action
+      - name: Run script
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: pastaway2/first-action@main
