@@ -1,3 +1,4 @@
+
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -32,10 +33,12 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install octokit
+        run:  npm install octokit
+              npm install @actions/core
+              npm install @actions/github
 
       # Runs a set of commands using the runners shell
       - name: Run script
         env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.TOKEN}}
         uses: pastaway2/first-action@main
